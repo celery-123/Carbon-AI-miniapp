@@ -1,0 +1,9 @@
+/*自定义 Vant 样式*/
+/* miniprogram/styles/vant.wxss */
+.van-button--primary {
+  background-color: #07C160 !important;
+  border-color: #07C160 !important;
+}
+.van-field {
+  font-size: 28rpx !important;
+}

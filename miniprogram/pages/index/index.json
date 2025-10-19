@@ -1,0 +1,8 @@
+{
+  
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "penguin-ip": "/components/penguin-ip/index"
+   
+  }
+}

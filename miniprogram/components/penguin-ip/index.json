@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "lottie": "lottie-miniapp/component/lottie"
+  }
+}

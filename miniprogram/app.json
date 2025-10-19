@@ -1,0 +1,39 @@
+{
+  "entryPagePath": "pages/index/index",
+  "pages": [
+    "pages/index/index",
+    "pages/me/me",
+    "styles/vant"
+  ],
+  "window": {
+    "navigationBarTitleText": "碳小伴",
+    "navigationBarBackgroundColor": "#07c160",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar":{
+    "list":[
+      {
+        "text":"首页",
+        "pagePath":"pages/index/index",
+        "iconPath":"/images/tutu.jpg",
+        "selectedIconPath":"/images/tutu.jpg"
+      },
+      {
+        "text":"我的",
+        "pagePath":"pages/me/me",
+        "iconPath":"/images/tutu.jpg",
+        "selectedIconPath":"/images/tutu.jpg"
+      }
+    ]
+  },
+  "resizable":true,
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-field": "@vant/weapp/field/index"
+  }
+}

@@ -1,0 +1,10 @@
+<!--components/penguin-ip/index.wxml-->
+<view class="penguin-container">
+  <!-- 使用 <lottie> 标签，指定动画路径和尺寸 -->
+  <lottie id="penguin-lottie" 
+          path="/lottie/penguin-{{mood}}.json" 
+          width="200" 
+          height="200" 
+          loop="true" 
+          autoplay="true" />
+</view>

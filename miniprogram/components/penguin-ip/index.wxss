@@ -1,0 +1,6 @@
+/* components/penguin-ip/index.wxss */
+.penguin-container {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
