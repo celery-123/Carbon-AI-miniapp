@@ -72,17 +72,57 @@ Page({
       wx.showToast({ title: '请填写完整信息', icon: 'none' });
       return;
     }
+    // 显示加载状态
+    this.setData({ isLoading: true });
+    wx.showLoading({ title: '提交中...', mask: true });
 
-    const db = wx.cloud.database();
-    db.collection("carbon_items").add({
-      data:{
-        carbonFactor:form.quantity,
-        category:form.recordType,
-        name:form.itemName,
-        unit:form.unit
-      },
-    }).then(res=>{
-      console.log(res);
-    })
+    try {
+      console.log('开始调用云函数 recordManual...');
+      
+      // 调用云函数
+      const result = await wx.cloud.callFunction({
+        name: 'recordManual',
+        data: {
+          itemName: form.itemName,
+          quantity: form.quantity,
+          unit: form.unit,
+          recordType: form.recordType
+        }
+      });
+
+      console.log('云函数返回结果:', result);
+
+      if (result.result.success) {
+        wx.showToast({ title: '记录成功！', icon: 'success' });
+        
+        // 清空表单
+        this.setData({
+          form: {
+            recordType: '',
+            itemName: '',
+            quantity: 0,
+            unit: ''
+          }
+        });
+
+        // 延迟返回上一页
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 1500);
+      } else {
+        throw new Error(result.result.error || '提交失败');
+      }
+
+    } catch (error) {
+      console.error('提交失败:', error);
+      wx.showToast({ 
+        title: error.message || '网络错误，请重试', 
+        icon: 'none',
+        duration: 3000
+      });
+    } finally {
+      this.setData({ isLoading: false });
+      wx.hideLoading();
+    }
   }
 })
