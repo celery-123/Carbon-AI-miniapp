@@ -1,14 +1,12 @@
 // cloudfunctions/recordManual/index.js
 const cloud = require('wx-server-sdk');
-cloud.init({ env: process.env.Env }); // 自动识别当前环境
+cloud.init({ env: process.env.CLOUD_ID });
 
-const db =cloud.database()
-
-//云函数入口
 exports.main = async (event) => {
   const { itemName, quantity, unit, recordType } = event;
   const wxContext = cloud.getWXContext();
   const openid = wxContext.OPENID;
+  const db = cloud.database();
 
   console.log('收到手动记录请求:', { itemName, quantity, unit, recordType, openid });
 
@@ -105,5 +103,3 @@ exports.main = async (event) => {
     };
   }
 };
-
-

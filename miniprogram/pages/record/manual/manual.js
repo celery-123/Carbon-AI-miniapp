@@ -9,7 +9,8 @@ Page({
       itemName: '',
       quantity: 0,
       unit: ''
-    }
+    },
+    isLoading: false
   },
 
   // 显示分类选择器 - 使用微信原生
@@ -59,7 +60,7 @@ Page({
     const form = this.data.form;
 
     // 调试：检查当前表单状态
-    console.log(' 提交前表单数据:', {
+    console.log('提交前表单数据:', {
       recordType: form.recordType,
       itemName: form.itemName, 
       quantity: form.quantity,
@@ -68,10 +69,11 @@ Page({
 
     // 校验
     if (!form.recordType || !form.itemName || form.quantity <= 0 || !form.unit) {
-      console.log(' 表单验证失败');
+      console.log('表单验证失败');
       wx.showToast({ title: '请填写完整信息', icon: 'none' });
       return;
     }
+
     // 显示加载状态
     this.setData({ isLoading: true });
     wx.showLoading({ title: '提交中...', mask: true });
