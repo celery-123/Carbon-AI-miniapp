@@ -1,20 +1,40 @@
-// app.js
+// miniprogram/app.js
 App({
-  onLaunch: function () {
-    this.globalData = {
-      // env 参数说明：
-      //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
-      //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
-      //   如不填则使用默认环境（第一个创建的环境）
-      env: "cloud1-4gfzafdt75bac67a"
-    };
-    if (!wx.cloud) {
-      console.error("请使用 2.2.3 或以上的基础库以使用云能力");
+  globalData: {
+    userInfo: null,
+    carbonItems: [],
+    totalCarbonReduced: 0
+  },
+  onLaunch() {
+    console.log('App Launch - 初始化云开发');
+    
+    // 初始化云开发
+    wx.cloud.init({
+      env: 'cloud1-4gfzafdt75bac67a', // 确保这里正确
+      traceUser: true
+    });
+
+    // 检查登录状态
+    this.checkLoginStatus();
+  },
+
+  checkLoginStatus() {
+    const userInfo = wx.getStorageSync('userInfo');
+    const openid = wx.getStorageSync('openid');
+    
+    console.log('检查登录状态:', { userInfo, openid });
+    
+    if (userInfo && openid) {
+      this.globalData.userInfo = userInfo;
+      this.globalData.openid = openid;
+      this.globalData.isLogin = true;
+      console.log('已有登录状态，用户:', userInfo);
     } else {
-      wx.cloud.init({
-        env: this.globalData.env,
-        traceUser: true,
+      console.log('未登录，跳转到登录页');
+      // 未登录时跳转到登录页
+      wx.reLaunch({
+        url: '/pages/me/me'
       });
     }
-  },
+  }
 });

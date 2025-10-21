@@ -1,23 +1,6 @@
-<!-- pages/index/index.wxml -->
 <!-- miniprogram/pages/index/index.wxml -->
-<view class="container">
-  <!-- 标题 -->
-  <view class="title">碳小伴 - 你的绿色生活伴侣</view>
-  <!-- 数据看板 -->
-  <view class="dashboard">
-    <view class="carbon-total">
-      <text class="carbon-value">{{totalCarbon || 0}}</text>
-      <text class="carbon-unit">克 CO₂</text>
-    </view>
-    <view class="carbon-tip">累计减碳量，相当于种 {{equivalentTrees || 0}} 棵树</view>
-    <carbon-chart id="carbonChart" data="{{categoryData}}"></carbon-chart>
-  </view>
-  <!-- IP形象 -->
-  <view class="penguin-container">
-    <penguin-ip mood="{{penguinMood}}"></penguin-ip>
-  </view>
-  <!-- 快速记录入口 -->
-  <view class="record-entry">
-    <van-button type="primary" bindtap="goToRecord">记录我的碳足迹</van-button>
-  </view>
+<view class="handle">
+  <navigator url="/pages/record/manual/manual" open-type="navigate">
+    <text>手动输入</text>
+  </navigator>
 </view>

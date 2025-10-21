@@ -1,13 +1,13 @@
 /**app.wxss**/
 /* miniprogram/app.wxss */
 @import 'styles/vant.wxss';
-@import 'styles/theme.wxss';
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-} 
+page {
+  background-color: #F7F7F7; /* 页面背景 */
+  font-size: 28rpx; /* 正文字体 */
+  color: #666;
+}
+
+
 
 button {
   background: initial;
@@ -20,11 +20,13 @@ button:focus{
 button::after{
   border: none;
 }
-
-
-page {
-  background: #f6f6f6;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+.title {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: 600;
 }
+.desc {
+  font-size: 24rpx;
+  color: #999;
+}
+

@@ -1,0 +1,41 @@
+<!-- miniprogram/pages/record/manual/manual.wxml -->
+<view class="container">
+  <van-cell-group>
+    <!-- 分类选择器 - 直接绑定到 onShowCategoryPicker -->
+    <van-field
+      label="分类"
+      value="{{ form.recordType ? categoryColumns[categoryValues.indexOf(form.recordType)] : '请选择分类' }}"
+      placeholder="请选择分类"
+      readonly
+      bind:tap="onShowCategoryPicker"
+      is-link
+    />
+    
+
+    <van-field
+      label="项目"
+      value="{{ form.itemName }}"
+      placeholder="请输入项目名称，如'牛肉'"
+      bind:change="onItemNameChange"
+    />
+
+    <van-field
+      label="数量"
+      type="number"
+      value="{{ form.quantity }}"
+      placeholder="请输入数量"
+      bind:change="onQuantityChange"
+    />
+
+    <van-field
+      label="单位"
+      value="{{ form.unit }}"
+      placeholder="请输入单位，如'kg', 'km'"
+      bind:change="onUnitChange"
+    />
+  </van-cell-group>
+
+  <van-button type="primary" size="large" bind:click="onSubmit" class="submit-btn">
+    提交记录
+  </van-button>
+</view>

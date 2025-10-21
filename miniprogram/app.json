@@ -3,7 +3,8 @@
   "pages": [
     "pages/index/index",
     "pages/me/me",
-    "styles/vant"
+    "pages/record/manual/manual",
+    "pages/dashboard/dashboard"
   ],
   "window": {
     "navigationBarTitleText": "碳小伴",
@@ -11,29 +12,31 @@
     "enablePullDownRefresh": true,
     "navigationBarTextStyle": "white"
   },
-  "tabBar":{
-    "list":[
+  "tabBar": {
+    "list": [
       {
-        "text":"首页",
-        "pagePath":"pages/index/index",
-        "iconPath":"/images/tutu.jpg",
-        "selectedIconPath":"/images/tutu.jpg"
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tutu.jpg",
+        "selectedIconPath": "images/tutu.jpg"
       },
       {
-        "text":"我的",
+        "text": "我的",
         "pagePath":"pages/me/me",
-        "iconPath":"/images/tutu.jpg",
-        "selectedIconPath":"/images/tutu.jpg"
+        "iconPath": "images/tutu.jpg",
+        "selectedIconPath": "images/tutu.jpg"
       }
     ]
   },
-  "resizable":true,
+  "resizable": true,
   "sitemapLocation": "sitemap.json",
   "style": "v2",
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
+    "van-cell": "@vant/weapp/cell/index",
     "van-picker": "@vant/weapp/picker/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
     "van-field": "@vant/weapp/field/index"
   }
 }

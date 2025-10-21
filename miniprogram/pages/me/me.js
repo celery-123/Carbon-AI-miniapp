@@ -1,66 +1,61 @@
-// pages/me/me.js
+//me.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  handleLogin() {
+    wx.showLoading({ title: '登录中...' });
+    
+    // 第一步：获取code
+    wx.login({
+      success: (loginRes) => {
+        console.log('获取到的code:', loginRes.code);
+        
+        if (loginRes.code) {
+          // 第二步：调用云函数
+          wx.cloud.callFunction({
+            name: 'userLogin',
+            data: { 
+              code: loginRes.code 
+            },
+            success: (res) => {
+              wx.hideLoading();
+              console.log('云函数返回:', res);
+              
+              if (res.result && res.result.success) {
+                wx.showToast({ title: '登录成功' });
+                
+                // 存储用户信息
+                wx.setStorageSync('userInfo', res.result.userInfo);
+                wx.setStorageSync('openid', res.result.openid);
+                
+                // 跳转回首页
+                wx.switchTab({
+                  url: '/pages/index/index'
+                });
+              } else {
+                wx.showToast({ 
+                  title: res.result.error || '登录失败', 
+                  icon: 'none' 
+                });
+              }
+            },
+            fail: (err) => {
+              wx.hideLoading();
+              console.error('云函数调用失败:', err);
+              wx.showToast({ 
+                title: '网络请求失败', 
+                icon: 'none' 
+              });
+            }
+          });
+        } else {
+          wx.hideLoading();
+          wx.showToast({ title: '获取登录码失败', icon: 'none' });
+        }
+      },
+      fail: (err) => {
+        wx.hideLoading();
+        console.error('wx.login失败:', err);
+        wx.showToast({ title: '登录失败', icon: 'none' });
+      }
+    });
   }
-})
+});

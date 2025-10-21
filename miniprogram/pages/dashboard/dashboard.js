@@ -1,4 +1,4 @@
-// miniprogram.js 
+// pages/dashboard/dashboard.js
 Page({
 
   /**

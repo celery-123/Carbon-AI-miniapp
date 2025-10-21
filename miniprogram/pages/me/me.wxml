@@ -1,2 +1,9 @@
 <!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<van-empty
+  image=""
+  description="请点击下方按钮，授权登录你的账户~"
+>
+  <van-button round type="danger" class="loginButton" bind:tap="handleLogin">
+  点击授权登录
+  </van-button>
+</van-empty>

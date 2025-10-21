@@ -1,54 +1,6 @@
-/* pages/index/index.wxss */
 /* miniprogram/pages/index/index.wxss */
-.container {
-  padding: 32rpx;
-  background-color: #F7F7F7;
-}
-
-.title {
-  font-size: 36rpx;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 24rpx;
-}
-
-.dashboard {
-  background-color: #FFF;
-  border-radius: 16rpx;
-  padding: 24rpx;
-  margin-bottom: 24rpx;
-}
-
-.carbon-total {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 16rpx;
-}
-
-.carbon-value {
-  font-size: 48rpx;
-  font-weight: 600;
-  color: #07C160;
-}
-
-.carbon-unit {
-  font-size: 28rpx;
-  color: #666;
-  margin-left: 8rpx;
-}
-
-.carbon-tip {
-  font-size: 24rpx;
-  color: #999;
-}
-
-.penguin-container {
-  display: flex;
-  justify-content: center;
-  margin: 24rpx 0;
-}
-
-.record-entry {
-  display: flex;
-  justify-content: center;
+.handle{
+  color:black;
+  font-weight: bold;
+  font-size:35rpx;
 }
