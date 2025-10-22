@@ -4,7 +4,7 @@
     <!-- 分类选择器 - 直接绑定到 onShowCategoryPicker -->
     <van-field
       label="分类"
-      value="{{ form.recordType ? categoryColumns[categoryValues.indexOf(form.recordType)] : '请选择分类' }}"
+      value="{{form.recordType}}"
       placeholder="请选择分类"
       readonly
       bind:tap="onShowCategoryPicker"
@@ -15,7 +15,7 @@
     <van-field
       label="项目"
       value="{{ form.itemName }}"
-      placeholder="请输入项目名称，如'牛肉'"
+      placeholder="请输入项目名称，如'公交车'"
       bind:change="onItemNameChange"
     />
 

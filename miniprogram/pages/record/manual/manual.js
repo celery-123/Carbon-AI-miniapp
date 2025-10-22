@@ -1,9 +1,8 @@
 // miniprogram/pages/record/manual/manual.js
 Page({
   data: {
-    // 使用微信原生 picker
+    // 统一使用中文值，与数据库保持一致
     categoryColumns: ['饮食', '交通', '商品', '能源'],
-    categoryValues: ['diet', 'transport', 'goods', 'energy'],
     form: {
       recordType: '',
       itemName: '',
@@ -20,10 +19,10 @@ Page({
       itemList: this.data.categoryColumns,
       success: (res) => {
         console.log('用户选择了索引:', res.tapIndex);
-        const actualValue = this.data.categoryValues[res.tapIndex];
-        console.log(actualValue);
+        const selectedValue = this.data.categoryColumns[res.tapIndex]; // 直接使用中文值
+        console.log(selectedValue);
         this.setData({
-          'form.recordType': actualValue
+          'form.recordType': selectedValue
         });
         console.log('设置成功! form.recordType =', this.data.form.recordType);
       },
@@ -81,14 +80,14 @@ Page({
     try {
       console.log('开始调用云函数 recordManual...');
       
-      // 调用云函数
+      // 调用云函数 - recordType 现在是中文值
       const result = await wx.cloud.callFunction({
         name: 'recordManual',
         data: {
           itemName: form.itemName,
           quantity: form.quantity,
           unit: form.unit,
-          recordType: form.recordType
+          recordType: form.recordType // 传递中文值
         }
       });
 

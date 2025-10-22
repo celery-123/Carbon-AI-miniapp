@@ -71,7 +71,7 @@ exports.main = async (event) => {
     await db.collection('users').where({ _openid: openid })
       .update({
         data: {
-          totalCarbonReduced: db.command.inc(carbonAmount)
+          totalCarbonEmitted: db.command.inc(carbonAmount)
         }
       });
 

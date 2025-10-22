@@ -3,7 +3,7 @@ Page({
   data: {
     isLoading: true,
     dashboardData: {
-      totalCarbonReduced: 0,
+      totalCarbonEmitted: 0,
       equivalentTrees: 0,
       categoryData: [],
       recentRecords: [],

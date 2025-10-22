@@ -46,7 +46,7 @@ exports.main = async (event) => {
         _openid: openid,
         nickName: '微信用户',
         avatarUrl: '',
-        totalCarbonReduced: 0,
+        totalCarbonEmitted: 0,
         createdAt: db.serverDate()
       }
       

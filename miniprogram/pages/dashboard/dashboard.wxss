@@ -1,4 +1,4 @@
-/* pages/dashboard/dashboard.wxss */
+/* miniprogram/pages/dashboard/dashboard.wxss */
 .dashboard-container {
   min-height: 100vh;
   background: #f7f7f7;
@@ -11,29 +11,32 @@
   align-items: center;
   height: 400rpx;
   color: #999;
+  font-size: 28rpx;
 }
 
 .stats-cards {
   display: flex;
   gap: 20rpx;
   margin-bottom: 40rpx;
+  flex-wrap: wrap;
 }
 
 .stat-card {
   flex: 1;
+  min-width: 200rpx;
   background: white;
   border-radius: 16rpx;
-  padding: 40rpx 30rpx;
+  padding: 30rpx 20rpx;
   text-align: center;
   box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
 }
 
 .stat-value {
   display: block;
-  font-size: 48rpx;
+  font-size: 36rpx;
   font-weight: 600;
   color: #07C160;
-  margin-bottom: 10rpx;
+  margin-bottom: 8rpx;
 }
 
 .stat-label {
@@ -69,32 +72,7 @@
   border-radius: 20rpx;
   padding: 12rpx 24rpx;
   font-size: 24rpx;
-}
-
-.category-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20rpx;
-}
-
-.category-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 0;
-  border-bottom: 1rpx solid #eee;
-}
-
-.category-name {
-  font-size: 28rpx;
-  color: #333;
-  text-transform: capitalize;
-}
-
-.category-amount {
-  font-size: 28rpx;
-  color: #07C160;
-  font-weight: 500;
+  line-height: 1;
 }
 
 .empty-state {
@@ -103,6 +81,36 @@
   color: #999;
   font-size: 28rpx;
 }
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.category-item:last-child {
+  border-bottom: none;
+}
+
+.category-name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.category-amount {
+  font-size: 28rpx;
+  color: #07C160;
+  font-weight: 500;
+}
+
 
 .records-list {
   display: flex;
@@ -120,7 +128,7 @@
 .record-main {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 12rpx;
 }
 
@@ -128,19 +136,32 @@
   font-size: 28rpx;
   color: #333;
   flex: 1;
+  margin-right: 20rpx;
 }
 
 .record-amount {
   font-size: 28rpx;
   color: #FF6B35;
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .record-meta {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 24rpx;
   color: #999;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.record-type {
+  background: #e8f5e8;
+  color: #07C160;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  font-size: 22rpx;
 }
 
 .ai-feedback {
@@ -150,4 +171,5 @@
   border-radius: 8rpx;
   font-size: 24rpx;
   color: #07C160;
+  border-left: 4rpx solid #07C160;
 }

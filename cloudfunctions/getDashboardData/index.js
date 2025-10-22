@@ -36,9 +36,10 @@ exports.main = async (event) => {
     
     // 3. 计算分类数据
     const categoryData = {
-      diet: 0,
-      transport: 0,
-      goods: 0
+      '饮食': 0,
+      '交通': 0,
+      '商品': 0,
+      '能源': 0
     };
     
     recordsRes.data.forEach(record => {
@@ -54,7 +55,7 @@ exports.main = async (event) => {
     }));
     
     // 5. 计算相当于种树数量 (简化公式：1kg CO₂ ≈ 0.1棵树)
-    const equivalentTrees = Math.round(user.totalCarbonReduced / 1000 * 0.1 * 10) / 10;
+    const equivalentTrees = Math.round(user.totalCarbonEmitted / 1000 * 0.1 * 10) / 10;
     
     // 6. 确定IP形象心情
     const penguinMood = calculatePenguinMood(recordsRes.data);
@@ -62,7 +63,7 @@ exports.main = async (event) => {
     return {
       success: true,
       data: {
-        totalCarbonReduced: user.totalCarbonReduced,
+        totalCarbonEmitted: user.totalCarbonEmitted,
         equivalentTrees: equivalentTrees,
         categoryData: categoryArray,
         recentRecords: recordsRes.data.slice(0, 10), // 最近10条记录

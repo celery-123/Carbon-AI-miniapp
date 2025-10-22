@@ -1,3 +1,4 @@
+<!-- miniprogram/pages/dashboard/dashboard.wxml -->
 <view class="dashboard-container">
   <!-- 加载状态 -->
   <view wx:if="{{isLoading}}" class="loading">
@@ -9,19 +10,26 @@
     <!-- 顶部统计卡片 -->
     <view class="stats-cards">
       <view class="stat-card">
-        <text class="stat-value">{{dashboardData.totalCarbonReduced}}g</text>
-        <text class="stat-label">累计减碳量</text>
+        <text class="stat-value">{{dashboardData.totalCarbonEmitted}}g</text>
+        <text class="stat-label">累计碳排放量</text>
       </view>
       <view class="stat-card">
         <text class="stat-value">{{dashboardData.equivalentTrees}}</text>
         <text class="stat-label">相当于种树</text>
       </view>
+      <view class="stat-card">
+        <text class="stat-value">{{dashboardData.recentRecords.length}}</text>
+        <text class="stat-label">总记录数</text>
+      </view>
     </view>
 
-    <!-- 分类占比 -->
+    <!-- 分类占比 - 简化版 -->
     <view class="section">
       <view class="section-title">碳排放分类</view>
-      <view class="category-list">
+      <view wx:if="{{dashboardData.categoryData.length === 0}}" class="empty-state">
+        <text>暂无分类数据，快去添加记录吧！</text>
+      </view>
+      <view wx:else class="category-list">
         <view wx:for="{{dashboardData.categoryData}}" wx:key="category" class="category-item">
           <text class="category-name">{{item.category}}</text>
           <text class="category-amount">{{item.amount}}g</text>
@@ -41,13 +49,13 @@
       </view>
 
       <view wx:else class="records-list">
-        <view wx:for="{{dashboardData.recentRecords}}" wx:key="_id" class="record-item" bindtap="viewRecordDetail" data-id="{{item._id}}">
+        <view wx:for="{{dashboardData.recentRecords}}" wx:key="_id" class="record-item">
           <view class="record-main">
             <text class="record-desc">{{item.description}}</text>
             <text class="record-amount">{{item.carbonAmount}}g</text>
           </view>
           <view class="record-meta">
-            <text class="record-method">{{item.inputMethod}}</text>
+            <text class="record-type">{{item.recordType}}</text>
             <text class="record-time">{{formatTime(item.createdAt)}}</text>
           </view>
           <view wx:if="{{item.aiFeedback}}" class="ai-feedback">
