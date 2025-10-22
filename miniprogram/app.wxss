@@ -8,25 +8,3 @@ page {
 }
 
 
-
-button {
-  background: initial;
-}
-
-button:focus{
-  outline: 0;
-}
-
-button::after{
-  border: none;
-}
-.title {
-  font-size: 36rpx;
-  color: #333;
-  font-weight: 600;
-}
-.desc {
-  font-size: 24rpx;
-  color: #999;
-}
-

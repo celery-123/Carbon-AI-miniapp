@@ -1,7 +1,22 @@
 /* miniprogram/pages/record/manual/manual.wxss */
 .container {
   padding: 32rpx;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
 }
-.submit-btn {
-  margin-top: 60rpx;
+
+ .van-button--primary{
+  margin-top: 60rpx !important;
+  border-radius: 50rpx !important;
+  height: 88rpx !important;
+  font-size: 32rpx !important;
+  font-weight: 500 !important;
+  background: linear-gradient(135deg, #07C160 0%, #06a653 100%) !important;
+  border: none !important;
+  box-shadow: 0 8rpx 24rpx rgba(7, 193, 96, 0.3) !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+  line-height: 88rpx !important;
 }
+
+
