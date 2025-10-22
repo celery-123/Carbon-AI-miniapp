@@ -1,2 +1,60 @@
-<!--pages/dashboard/dashboard.wxml-->
-<text>pages/dashboard/dashboard.wxml</text>
+<view class="dashboard-container">
+  <!-- 加载状态 -->
+  <view wx:if="{{isLoading}}" class="loading">
+    <text>数据加载中...</text>
+  </view>
+
+  <!-- 主要内容 -->
+  <view wx:else class="dashboard-content">
+    <!-- 顶部统计卡片 -->
+    <view class="stats-cards">
+      <view class="stat-card">
+        <text class="stat-value">{{dashboardData.totalCarbonReduced}}g</text>
+        <text class="stat-label">累计减碳量</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-value">{{dashboardData.equivalentTrees}}</text>
+        <text class="stat-label">相当于种树</text>
+      </view>
+    </view>
+
+    <!-- 分类占比 -->
+    <view class="section">
+      <view class="section-title">碳排放分类</view>
+      <view class="category-list">
+        <view wx:for="{{dashboardData.categoryData}}" wx:key="category" class="category-item">
+          <text class="category-name">{{item.category}}</text>
+          <text class="category-amount">{{item.amount}}g</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 最近记录 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">最近记录</text>
+        <button class="add-btn" bindtap="navigateToRecord">+ 添加记录</button>
+      </view>
+      
+      <view wx:if="{{dashboardData.recentRecords.length === 0}}" class="empty-state">
+        <text>暂无记录，快去添加第一条碳足迹吧！</text>
+      </view>
+
+      <view wx:else class="records-list">
+        <view wx:for="{{dashboardData.recentRecords}}" wx:key="_id" class="record-item" bindtap="viewRecordDetail" data-id="{{item._id}}">
+          <view class="record-main">
+            <text class="record-desc">{{item.description}}</text>
+            <text class="record-amount">{{item.carbonAmount}}g</text>
+          </view>
+          <view class="record-meta">
+            <text class="record-method">{{item.inputMethod}}</text>
+            <text class="record-time">{{formatTime(item.createdAt)}}</text>
+          </view>
+          <view wx:if="{{item.aiFeedback}}" class="ai-feedback">
+            <text>💡 {{item.aiFeedback}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

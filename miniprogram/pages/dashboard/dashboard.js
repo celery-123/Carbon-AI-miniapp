@@ -1,66 +1,73 @@
-// pages/dashboard/dashboard.js
+const { formatTime } = require('../../utils/util.js');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    isLoading: true,
+    dashboardData: {
+      totalCarbonReduced: 0,
+      equivalentTrees: 0,
+      categoryData: [],
+      recentRecords: [],
+      penguinMood: 'normal'
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  onLoad() {
+    this.loadDashboardData();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    // 页面显示时刷新数据
+    this.loadDashboardData();
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  async loadDashboardData() {
+    this.setData({ isLoading: true });
+    
+    try {
+      const res = await wx.cloud.callFunction({
+        name: 'getDashboardData'
+      });
+      
+      if (res.result.success) {
+        this.setData({
+          dashboardData: res.result.data,
+          isLoading: false
+        });
+        
+        // 更新全局状态
+        getApp().globalData.penguinStatus = res.result.data.penguinMood;
+      } else {
+        this.showError('数据加载失败');
+      }
+    } catch (err) {
+      console.error('加载看板数据失败:', err);
+      this.showError('网络异常，请重试');
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  showError(message) {
+    this.setData({ isLoading: false });
+    wx.showToast({
+      title: message,
+      icon: 'none',
+      duration: 2000
+    });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  // 跳转到记录页面
+  navigateToRecord() {
+    wx.navigateTo({
+      url: '/pages/record/manual/manual'
+    });
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  // 查看记录详情
+  viewRecordDetail(e) {
+    const recordId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/record/detail/detail?id=${recordId}`
+    });
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+  // 在 data 中添加格式化函数
+  formatTime: formatTime
+});

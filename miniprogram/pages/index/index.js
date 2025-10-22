@@ -3,7 +3,7 @@ Page({
   data: {
     isLoggedIn: false,
     userInfo: null,
-    totalCarbonReduced: 0
+    totalCarbonReduced: 0,
   },
   onLoad() {
    

@@ -25,6 +25,12 @@
         "pagePath":"pages/me/me",
         "iconPath": "images/tutu.jpg",
         "selectedIconPath": "images/tutu.jpg"
+      },
+      {
+        "text": "数据",
+        "pagePath":"pages/dashboard/dashboard",
+        "iconPath": "images/tutu.jpg",
+        "selectedIconPath": "images/tutu.jpg"
       }
     ]
   },
